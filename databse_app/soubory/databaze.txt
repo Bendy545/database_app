@@ -1,0 +1,224 @@
+USE [knihovna]
+GO
+/****** Object:  Table [dbo].[autori]    Script Date: 05.02.2025 17:34:20 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[autori](
+	[id_au] [int] IDENTITY(1,1) NOT NULL,
+	[jm_au] [nvarchar](40) NOT NULL,
+	[prijm_au] [nvarchar](40) NOT NULL,
+	[dat_nar] [date] NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[id_au] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[knihy]    Script Date: 05.02.2025 17:34:20 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[knihy](
+	[id_kn] [int] IDENTITY(1,1) NOT NULL,
+	[nazev_kn] [nvarchar](40) NOT NULL,
+	[dat_vyd] [date] NOT NULL,
+	[id_au] [int] NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[id_kn] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[produkt]    Script Date: 05.02.2025 17:34:20 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[produkt](
+	[id_p] [int] IDENTITY(1,1) NOT NULL,
+	[kod_p] [int] NOT NULL,
+	[id_kn] [int] NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[id_p] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[vypujcky]    Script Date: 05.02.2025 17:34:20 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[vypujcky](
+	[id_vyp] [int] IDENTITY(1,1) NOT NULL,
+	[dat_vypujceni] [date] NOT NULL,
+	[dat_vraceni] [date] NULL,
+	[vraceno] [bit] NOT NULL,
+	[id_p] [int] NOT NULL,
+	[id_za] [int] NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[id_vyp] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[zakaznik]    Script Date: 05.02.2025 17:34:20 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[zakaznik](
+	[id_za] [int] IDENTITY(1,1) NOT NULL,
+	[jm_za] [nvarchar](40) NOT NULL,
+	[prijm_za] [nvarchar](40) NOT NULL,
+	[tel] [char](9) NOT NULL,
+	[dat_nar] [date] NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[id_za] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET IDENTITY_INSERT [dbo].[autori] ON 
+GO
+INSERT [dbo].[autori] ([id_au], [jm_au], [prijm_au], [dat_nar]) VALUES (1, N'Jan', N'Novák', CAST(N'1980-02-15' AS Date))
+GO
+INSERT [dbo].[autori] ([id_au], [jm_au], [prijm_au], [dat_nar]) VALUES (2, N'Petr', N'Svoboda', CAST(N'1975-11-20' AS Date))
+GO
+INSERT [dbo].[autori] ([id_au], [jm_au], [prijm_au], [dat_nar]) VALUES (3, N'Marie', N'Novotná', CAST(N'1990-07-10' AS Date))
+GO
+INSERT [dbo].[autori] ([id_au], [jm_au], [prijm_au], [dat_nar]) VALUES (4, N'Jana', N'Králová', CAST(N'1983-03-30' AS Date))
+GO
+INSERT [dbo].[autori] ([id_au], [jm_au], [prijm_au], [dat_nar]) VALUES (5, N'Jakub', N'Kováø', CAST(N'1992-05-22' AS Date))
+GO
+INSERT [dbo].[autori] ([id_au], [jm_au], [prijm_au], [dat_nar]) VALUES (6, N'Lucie', N'Dvoøáková', CAST(N'1985-10-01' AS Date))
+GO
+INSERT [dbo].[autori] ([id_au], [jm_au], [prijm_au], [dat_nar]) VALUES (7, N'Tomáš', N'Bartoš', CAST(N'1988-01-19' AS Date))
+GO
+INSERT [dbo].[autori] ([id_au], [jm_au], [prijm_au], [dat_nar]) VALUES (8, N'Eva', N'Marek', CAST(N'1979-08-05' AS Date))
+GO
+INSERT [dbo].[autori] ([id_au], [jm_au], [prijm_au], [dat_nar]) VALUES (9, N'Karel', N'Holub', CAST(N'1981-12-25' AS Date))
+GO
+INSERT [dbo].[autori] ([id_au], [jm_au], [prijm_au], [dat_nar]) VALUES (10, N'Alena', N'Køížová', CAST(N'1995-06-14' AS Date))
+GO
+SET IDENTITY_INSERT [dbo].[autori] OFF
+GO
+SET IDENTITY_INSERT [dbo].[knihy] ON 
+GO
+INSERT [dbo].[knihy] ([id_kn], [nazev_kn], [dat_vyd], [id_au]) VALUES (1, N'Cesta k úspìchu', CAST(N'2020-06-01' AS Date), 1)
+GO
+INSERT [dbo].[knihy] ([id_kn], [nazev_kn], [dat_vyd], [id_au]) VALUES (2, N'Tajemství života', CAST(N'2018-03-22' AS Date), 2)
+GO
+INSERT [dbo].[knihy] ([id_kn], [nazev_kn], [dat_vyd], [id_au]) VALUES (3, N'Ztracené mìsto', CAST(N'2017-10-15' AS Date), 3)
+GO
+INSERT [dbo].[knihy] ([id_kn], [nazev_kn], [dat_vyd], [id_au]) VALUES (4, N'Tajemství zrcadla', CAST(N'2019-08-09' AS Date), 4)
+GO
+INSERT [dbo].[knihy] ([id_kn], [nazev_kn], [dat_vyd], [id_au]) VALUES (5, N'Mocná kniha', CAST(N'2021-05-03' AS Date), 5)
+GO
+INSERT [dbo].[knihy] ([id_kn], [nazev_kn], [dat_vyd], [id_au]) VALUES (6, N'Stíny minulosti', CAST(N'2016-12-13' AS Date), 6)
+GO
+INSERT [dbo].[knihy] ([id_kn], [nazev_kn], [dat_vyd], [id_au]) VALUES (7, N'Nový svìt', CAST(N'2022-09-25' AS Date), 7)
+GO
+INSERT [dbo].[knihy] ([id_kn], [nazev_kn], [dat_vyd], [id_au]) VALUES (8, N'Neztratit nadìji', CAST(N'2015-01-11' AS Date), 8)
+GO
+INSERT [dbo].[knihy] ([id_kn], [nazev_kn], [dat_vyd], [id_au]) VALUES (9, N'V srdci pøírody', CAST(N'2020-07-18' AS Date), 9)
+GO
+INSERT [dbo].[knihy] ([id_kn], [nazev_kn], [dat_vyd], [id_au]) VALUES (10, N'Cesta k lásce', CAST(N'2019-11-30' AS Date), 10)
+GO
+SET IDENTITY_INSERT [dbo].[knihy] OFF
+GO
+SET IDENTITY_INSERT [dbo].[produkt] ON 
+GO
+INSERT [dbo].[produkt] ([id_p], [kod_p], [id_kn]) VALUES (1, 12345, 1)
+GO
+INSERT [dbo].[produkt] ([id_p], [kod_p], [id_kn]) VALUES (2, 12346, 2)
+GO
+INSERT [dbo].[produkt] ([id_p], [kod_p], [id_kn]) VALUES (3, 12347, 3)
+GO
+INSERT [dbo].[produkt] ([id_p], [kod_p], [id_kn]) VALUES (4, 12348, 4)
+GO
+INSERT [dbo].[produkt] ([id_p], [kod_p], [id_kn]) VALUES (5, 12349, 5)
+GO
+INSERT [dbo].[produkt] ([id_p], [kod_p], [id_kn]) VALUES (6, 12350, 6)
+GO
+INSERT [dbo].[produkt] ([id_p], [kod_p], [id_kn]) VALUES (7, 12351, 7)
+GO
+INSERT [dbo].[produkt] ([id_p], [kod_p], [id_kn]) VALUES (8, 12352, 8)
+GO
+INSERT [dbo].[produkt] ([id_p], [kod_p], [id_kn]) VALUES (9, 12353, 9)
+GO
+INSERT [dbo].[produkt] ([id_p], [kod_p], [id_kn]) VALUES (10, 12354, 10)
+GO
+SET IDENTITY_INSERT [dbo].[produkt] OFF
+GO
+SET IDENTITY_INSERT [dbo].[vypujcky] ON 
+GO
+INSERT [dbo].[vypujcky] ([id_vyp], [dat_vypujceni], [dat_vraceni], [vraceno], [id_p], [id_za]) VALUES (1, CAST(N'2025-01-15' AS Date), CAST(N'2025-01-22' AS Date), 1, 1, 1)
+GO
+INSERT [dbo].[vypujcky] ([id_vyp], [dat_vypujceni], [dat_vraceni], [vraceno], [id_p], [id_za]) VALUES (2, CAST(N'2025-01-20' AS Date), NULL, 0, 2, 2)
+GO
+INSERT [dbo].[vypujcky] ([id_vyp], [dat_vypujceni], [dat_vraceni], [vraceno], [id_p], [id_za]) VALUES (3, CAST(N'2025-01-25' AS Date), CAST(N'2025-02-01' AS Date), 1, 3, 3)
+GO
+INSERT [dbo].[vypujcky] ([id_vyp], [dat_vypujceni], [dat_vraceni], [vraceno], [id_p], [id_za]) VALUES (4, CAST(N'2025-02-02' AS Date), NULL, 0, 4, 4)
+GO
+INSERT [dbo].[vypujcky] ([id_vyp], [dat_vypujceni], [dat_vraceni], [vraceno], [id_p], [id_za]) VALUES (5, CAST(N'2025-02-03' AS Date), CAST(N'2025-02-05' AS Date), 1, 5, 5)
+GO
+SET IDENTITY_INSERT [dbo].[vypujcky] OFF
+GO
+SET IDENTITY_INSERT [dbo].[zakaznik] ON 
+GO
+INSERT [dbo].[zakaznik] ([id_za], [jm_za], [prijm_za], [tel], [dat_nar]) VALUES (1, N'Jan', N'Novák', N'602123456', CAST(N'1992-05-15' AS Date))
+GO
+INSERT [dbo].[zakaznik] ([id_za], [jm_za], [prijm_za], [tel], [dat_nar]) VALUES (2, N'Petr', N'Svoboda', N'603654321', CAST(N'1980-04-18' AS Date))
+GO
+INSERT [dbo].[zakaznik] ([id_za], [jm_za], [prijm_za], [tel], [dat_nar]) VALUES (3, N'Marie', N'Novotná', N'604234567', CAST(N'1995-08-22' AS Date))
+GO
+INSERT [dbo].[zakaznik] ([id_za], [jm_za], [prijm_za], [tel], [dat_nar]) VALUES (4, N'Jana', N'Králová', N'605345678', CAST(N'1990-01-25' AS Date))
+GO
+INSERT [dbo].[zakaznik] ([id_za], [jm_za], [prijm_za], [tel], [dat_nar]) VALUES (5, N'Jakub', N'Kováø', N'606456789', CAST(N'1993-12-10' AS Date))
+GO
+INSERT [dbo].[zakaznik] ([id_za], [jm_za], [prijm_za], [tel], [dat_nar]) VALUES (6, N'Lucie', N'Dvoøáková', N'607567890', CAST(N'1987-07-30' AS Date))
+GO
+INSERT [dbo].[zakaznik] ([id_za], [jm_za], [prijm_za], [tel], [dat_nar]) VALUES (7, N'Tomáš', N'Bartoš', N'608678901', CAST(N'1989-10-14' AS Date))
+GO
+INSERT [dbo].[zakaznik] ([id_za], [jm_za], [prijm_za], [tel], [dat_nar]) VALUES (8, N'Eva', N'Marek', N'609789012', CAST(N'1990-06-05' AS Date))
+GO
+INSERT [dbo].[zakaznik] ([id_za], [jm_za], [prijm_za], [tel], [dat_nar]) VALUES (9, N'Karel', N'Holub', N'601234567', CAST(N'1984-11-01' AS Date))
+GO
+INSERT [dbo].[zakaznik] ([id_za], [jm_za], [prijm_za], [tel], [dat_nar]) VALUES (10, N'Alena', N'Køížová', N'602345678', CAST(N'1997-02-18' AS Date))
+GO
+SET IDENTITY_INSERT [dbo].[zakaznik] OFF
+GO
+ALTER TABLE [dbo].[knihy]  WITH CHECK ADD FOREIGN KEY([id_au])
+REFERENCES [dbo].[autori] ([id_au])
+GO
+ALTER TABLE [dbo].[produkt]  WITH CHECK ADD FOREIGN KEY([id_kn])
+REFERENCES [dbo].[knihy] ([id_kn])
+GO
+ALTER TABLE [dbo].[vypujcky]  WITH CHECK ADD FOREIGN KEY([id_p])
+REFERENCES [dbo].[produkt] ([id_p])
+GO
+ALTER TABLE [dbo].[vypujcky]  WITH CHECK ADD FOREIGN KEY([id_za])
+REFERENCES [dbo].[zakaznik] ([id_za])
+GO
+ALTER TABLE [dbo].[autori]  WITH CHECK ADD CHECK  ((len([jm_au])>=(3)))
+GO
+ALTER TABLE [dbo].[autori]  WITH CHECK ADD CHECK  ((len([prijm_au])>(3)))
+GO
+ALTER TABLE [dbo].[knihy]  WITH CHECK ADD CHECK  (([id_au]>(0)))
+GO
+ALTER TABLE [dbo].[knihy]  WITH CHECK ADD CHECK  ((len([nazev_kn])>(1)))
+GO
+ALTER TABLE [dbo].[produkt]  WITH CHECK ADD CHECK  (([id_kn]>(0)))
+GO
+ALTER TABLE [dbo].[produkt]  WITH CHECK ADD CHECK  (([kod_p]>(0)))
+GO
+ALTER TABLE [dbo].[zakaznik]  WITH CHECK ADD CHECK  (([dat_nar]>'1905-1-1' AND [dat_nar]<=getdate()))
+GO
+ALTER TABLE [dbo].[zakaznik]  WITH CHECK ADD CHECK  ((len([jm_za])>=(3)))
+GO
+ALTER TABLE [dbo].[zakaznik]  WITH CHECK ADD CHECK  ((len([prijm_za])>(3)))
+GO

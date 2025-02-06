@@ -1,0 +1,68 @@
+use knihovna;
+
+create table autori(
+id_au int identity(1,1) primary key,
+jm_au nvarchar(40) not null,
+prijm_au nvarchar(40) not null,
+dat_nar date not null,
+
+check(len(jm_au) >= 3),
+check(len(prijm_au) > 3),
+
+);
+
+create table knihy(
+id_kn int identity(1,1) primary key,
+nazev_kn nvarchar(40) not null,
+dat_vyd date not null,
+id_au int not null,
+
+foreign key(id_au) references autori(id_au) ,
+
+check(len(nazev_kn) > 1),
+check(id_au > 0),
+);
+
+
+create table produkt(
+id_p int identity(1,1) primary key,
+kod_p int not null,
+id_kn int not null,
+
+
+foreign key(id_kn) references knihy(id_kn),
+
+
+check(kod_p > 0),
+check(id_kn > 0),
+
+
+
+);
+
+create table zakaznik(
+id_za int identity(1,1) primary key,
+jm_za nvarchar(40) not null,
+prijm_za nvarchar(40) not null,
+tel char(9) not null,
+dat_nar date not null,
+
+check(len(jm_za) >= 3),
+check(len(prijm_za) > 3),
+check(dat_nar > '1905-1-1' and dat_nar <= getdate()),
+
+);
+
+create table vypujcky(
+id_vyp int identity(1,1) primary key,
+dat_vypujceni date not null,
+dat_vraceni date null,
+vraceno bit not null,
+id_p int not null,
+id_za int not null,
+
+foreign key(id_p) references produkt(id_p),
+foreign key(id_za) references zakaznik(id_za),
+
+);
+
