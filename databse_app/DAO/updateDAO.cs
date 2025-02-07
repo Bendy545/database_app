@@ -18,27 +18,33 @@ namespace databse_app.DAO
 
         }
 
-        public bool RecordExists(string tableName, string columnName, int id)
+        public int? GetIdByColumnValue(string tableName, string searchColumn, string searchValue, string idColumn)
         {
             using (SqlConnection connection = Singleton.GetConnection())
             {
-                string query = $"SELECT COUNT(*) FROM {tableName} WHERE {columnName} = @Id";
+                string query;
+
+                if (int.TryParse(searchValue, out _))
+                {
+                    query = $"SELECT {idColumn} FROM {tableName} WHERE {searchColumn} = @SearchValue";
+                }
+                else
+                {
+                    query = $"SELECT {idColumn} FROM {tableName} WHERE {searchColumn} COLLATE Latin1_General_CI_AI = @SearchValue";
+                }
+
                 using (SqlCommand cmd = new SqlCommand(query, connection))
                 {
-                    cmd.Parameters.AddWithValue("@Id", id);
+                    cmd.Parameters.AddWithValue("@SearchValue", searchValue);
                     connection.Open();
-                    return (int)cmd.ExecuteScalar() > 0;
+                    object result = cmd.ExecuteScalar();
+                    return result != null ? (int?)result : null;
                 }
             }
         }
 
         public void UpdateRecord(string tableName, string columnToUpdate, object newValue, string idColumn, int id)
         {
-            if (!RecordExists(tableName, idColumn, id))
-            {
-                Console.WriteLine($"{tableName} s ID {id} neexistuje.");
-                return;
-            }
 
             using (SqlConnection connection = Singleton.GetConnection())
             {

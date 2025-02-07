@@ -18,42 +18,57 @@ namespace databse_app.MenuClasses
         public void ShowDeleteMenu()
         {
             Console.WriteLine("\n--- Delete MENU ---");
-            Console.WriteLine("1 - Smazat autora");
-            Console.WriteLine("2 - Smazat knihu");
-            Console.WriteLine("3 - Smazat zákazníka");
-            Console.WriteLine("4 - Smazat produkt");
-            Console.WriteLine("5 - Smazat výpůjčku");
+            Console.WriteLine("1 - Smazat autora (jméno a příjmení)");
+            Console.WriteLine("2 - Smazat knihu (název)");
+            Console.WriteLine("3 - Smazat zákazníka (jméno a příjmení)");
+            Console.WriteLine("4 - Smazat produkt (kód produktu)");
+            Console.WriteLine("5 - Smazat výpůjčku (ID)");
             Console.WriteLine("6 - Zpět");
             Console.Write("Vyberte možnost: ");
 
             string volba = Console.ReadLine();
-
             if (volba == "6") return;
-
-            Console.Write("Zadejte ID: ");
-            if (!int.TryParse(Console.ReadLine(), out int id))
-            {
-                Console.WriteLine("Neplatné ID");
-                return;
-            }
 
             switch (volba)
             {
                 case "1":
-                    _deleteDAO.deleteAutor(id);
+                    Console.Write("Zadejte jméno autora: ");
+                    string jmenoAutor = Console.ReadLine();
+                    Console.Write("Zadejte příjmení autora: ");
+                    string prijmeniAutor = Console.ReadLine();
+                    _deleteDAO.deleteAutor(jmenoAutor, prijmeniAutor);
                     break;
+
                 case "2":
-                    _deleteDAO.deleteKniha(id);
+                    Console.Write("Zadejte název knihy: ");
+                    string nazevKnihy = Console.ReadLine();
+                    _deleteDAO.deleteKniha(nazevKnihy);
                     break;
+
                 case "3":
-                    _deleteDAO.deleteZakaznik(id);
+                    Console.Write("Zadejte jméno zákazníka: ");
+                    string jmenoZakaznik = Console.ReadLine();
+                    Console.Write("Zadejte příjmení zákazníka: ");
+                    string prijmeniZakaznik = Console.ReadLine();
+                    _deleteDAO.deleteZakaznik(jmenoZakaznik, prijmeniZakaznik);
                     break;
+
                 case "4":
-                    _deleteDAO.deleteProdukt(id);
+                    Console.Write("Zadejte kód produktu: ");
+                    string kodProduktu = Console.ReadLine();
+                    _deleteDAO.deleteProdukt(kodProduktu);
                     break;
+
                 case "5":
-                    _deleteDAO.deleteVypujcka(id);
+                    Console.Write("Zadejte ID výpůjčky: ");
+                    if (!int.TryParse(Console.ReadLine(), out int idVypujcky))
+                    {
+                        Console.WriteLine("Neplatné ID");
+                        return;
+                    }
+                    _deleteDAO.deleteVypujcka(idVypujcky);
                     break;
+
                 default:
                     Console.WriteLine("Neplatná volba.");
                     break;
