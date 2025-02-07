@@ -9,12 +9,12 @@ Pokud tyto aplikace nemáte tak je nainstalujte: Visual Studio, SQL Server Manag
 ## Nastavení projektu 
 
 1. Vytvoření databáze:
-   - V SQL Server Managment Studio zmáčknete tlačítko create querry a napíšete: **create database knihovna**; a zmáčknete Execute
+   - V SQL Server Managment Studio klikneme na tlačítko create querry a napíšeme: **create database knihovna**; a poté klikneme na Execute
      
 ![createDatabase](https://github.com/user-attachments/assets/200ab74a-6b0d-4314-80f9-b373d3d15f44)
 
    - Po vytvoření databáze tak použijeme následující skript, který je uložený ve složce soubory pod jménem databaze.txt
-   - obsah souboru zkopírujeme a v SQL Server Managment Studio vytvoříme nové querry a zkopírovaný obsah vložíme do querry a žmáčkneme Execute
+   - obsah souboru zkopírujeme a v SQL Server Managment Studio vytvoříme nové querry a zkopírovaný obsah vložíme do querry a klikneme Execute
 
 2. Vytvoření projektu
    - zkopírujeme URL repozitáře a ve visual studiu zvolíme možnost clone repository kam následně vložíme URL a vytvoříme projekt
