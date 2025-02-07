@@ -30,11 +30,11 @@ namespace databse_app.MenuClasses
             switch (volba)
             {
                 case "1":
-                    soubor = @"C:\Users\uzivatel 1\source\repos\databse_app\databse_app\soubory\autori.csv";
+                    soubor = @"autori.csv";
                     csv.ImportAuthors(soubor);
                     break;
                 case "2":
-                    soubor = @"C:\Users\uzivatel 1\source\repos\databse_app\databse_app\soubory\zakaznici.csv";
+                    soubor = @"zakaznici.csv";
                     csv.ImportCustomers(soubor);
                     break;
                 default:
