@@ -55,6 +55,9 @@ namespace databse_app.MenuClasses
             }
         }
 
+        /// <summary>
+        /// Umožňuje přidat nového autora
+        /// </summary>
         private void AddAutor()
         {
             Console.Write("Jméno autora: ");
@@ -71,6 +74,9 @@ namespace databse_app.MenuClasses
             Console.WriteLine("Autor přidán.");
         }
 
+        /// <summary>
+        /// Umožňuje přidat novou knihu 
+        /// </summary>
         private void AddKniha()
         {
             Console.Write("Název knihy: ");
@@ -95,6 +101,9 @@ namespace databse_app.MenuClasses
             Console.WriteLine("Kniha přidána.");
         }
 
+        /// <summary>
+        /// Umožňuje přidat nového zákazníka
+        /// </summary>
         private void AddZakaznik()
         {
             Console.Write("Jméno zákazníka: ");
@@ -113,6 +122,9 @@ namespace databse_app.MenuClasses
             Console.WriteLine("Zákazník přidán.");
         }
 
+        /// <summary>
+        /// Umožňuje přidat nový produkt do databáze
+        /// </summary>
         private void AddProdukt()
         {
             Console.Write("Kód produktu: ");
@@ -137,6 +149,9 @@ namespace databse_app.MenuClasses
             Console.WriteLine("Produkt přidán.");
         }
 
+        /// <summary>
+        /// Umožnuje přidat novou výpujčku do databáze
+        /// </summary>
         private void AddVypujcka()
         {
             Console.Write("Datum výpůjčky (YYYY-MM-DD): ");
