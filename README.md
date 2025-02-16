@@ -35,3 +35,7 @@ Pokud tyto aplikace nemáte tak je nainstalujte: Visual Studio, SQL Server Manag
    - V této třídě přepíšete zvýrazněné pole buď na "WindowsAuthentication" a nebo na "SqlAuthentication"
    
 ![SingletonClass](https://github.com/user-attachments/assets/d77031b8-f75a-4cc5-8643-d7cf8d4e2088)
+
+## Nastavení pro funkčnost importu dat z csv
+
+Po stažení projektu z githubu musíte soubory zakaznici.csv a autori.csv vložit do složky net8.0 přez složky: databse_app -> bin -> Debug -> net8.0
