@@ -18,6 +18,14 @@ namespace databse_app.DAO
 
         }
 
+        /// <summary>
+        /// Získá ID záznamu
+        /// </summary>
+        /// <param name="tableName">Název tabulky</param>
+        /// <param name="searchColumn">Název sloupce</param>
+        /// <param name="searchValue">Hledaná hodnota</param>
+        /// <param name="idColumn">Název sloupce s ID</param>
+        /// <returns>ID záznamu</returns>
         public int? GetIdByColumnValue(string tableName, string searchColumn, string searchValue, string idColumn)
         {
             using (SqlConnection connection = Singleton.GetConnection())
@@ -43,6 +51,14 @@ namespace databse_app.DAO
             }
         }
 
+        /// <summary>
+        /// Aktualizuje záznam v databázi
+        /// </summary>
+        /// <param name="tableName">Název tabulky</param>
+        /// <param name="columnToUpdate">Název sloupce, který se aktualizuje</param>
+        /// <param name="newValue">Nová hodnota</param>
+        /// <param name="idColumn">Název sloupce s ID</param>
+        /// <param name="id">ID záznamu k aktualizaci</param>
         public void UpdateRecord(string tableName, string columnToUpdate, object newValue, string idColumn, int id)
         {
 

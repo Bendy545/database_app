@@ -16,6 +16,9 @@ namespace databse_app.MenuClasses
             csv = new CSV();
         }
 
+        /// <summary>
+        /// zobrazí menu pro import dat do databáze
+        /// </summary>
         public void ImportData()
         {
 

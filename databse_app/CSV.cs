@@ -15,6 +15,11 @@ namespace databse_app
         {
             _insertDAO = new insertDAO();
         }
+
+        /// <summary>
+        /// Importuje autory ze souboru CSV do databáze
+        /// </summary>
+        /// <param name="csvFilePath">cesta k csv souboru</param>
         public void ImportAuthors(string csvFilePath)
         {
             using (var reader = new StreamReader(csvFilePath))
@@ -50,6 +55,10 @@ namespace databse_app
             }
         }
 
+        /// <summary>
+        /// Importuje zákazníky ze souboru CSV do databáze
+        /// </summary>
+        /// <param name="csvFilePath">cesta k csv souboru</param>
         public void ImportCustomers(string csvFilePath)
         {
             using (var reader = new StreamReader(csvFilePath))

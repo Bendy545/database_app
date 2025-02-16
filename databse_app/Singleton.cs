@@ -18,6 +18,10 @@ namespace databse_app
         _connectionString = ConfigurationManager.ConnectionStrings["WindowsAuthentication"].ConnectionString;
     }
 
+    /// <summary>
+    /// Pro připojení do databáze
+    /// </summary>
+    /// <returns>připojení do databáze</returns>
     public static SqlConnection GetConnection()
     {
         return new SqlConnection(_connectionString);

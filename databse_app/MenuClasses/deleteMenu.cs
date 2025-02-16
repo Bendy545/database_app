@@ -15,6 +15,10 @@ namespace databse_app.MenuClasses
         {
             _deleteDAO = new deleteDAO();
         }
+
+        /// <summary>
+        /// Zobrazí menu pro odstranění dat z databáze
+        /// </summary>
         public void ShowDeleteMenu()
         {
             Console.WriteLine("\n--- Delete MENU ---");

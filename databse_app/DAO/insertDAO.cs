@@ -17,6 +17,13 @@ namespace databse_app.DAO
 
         }
 
+        /// <summary>
+        /// Kontroluje zda záznam v databázi existuje
+        /// </summary>
+        /// <param name="tableName">Název tabulky</param>
+        /// <param name="columnName">Název sloupce</param>
+        /// <param name="id">Hledané ID</param>
+        /// <returns></returns>
         public bool RecordExists(string tableName, string columnName, int id)
         {
             using (SqlConnection connection = Singleton.GetConnection())
@@ -31,6 +38,12 @@ namespace databse_app.DAO
             }
         }
 
+        /// <summary>
+        /// Přidá nového autora do databáze
+        /// </summary>
+        /// <param name="jmeno">Jmébo autora</param>
+        /// <param name="prijmeni">Příjmení autora</param>
+        /// <param name="datumNarozeni">Datum narození autora</param>
         public void AddAutor(string jmeno, string prijmeni, DateTime datumNarozeni)
         {
             using (SqlConnection connection = Singleton.GetConnection())
@@ -45,6 +58,13 @@ namespace databse_app.DAO
                 cmd.ExecuteNonQuery();
             }
         }
+
+        /// <summary>
+        /// Přidá novou knihu do databáze
+        /// </summary>
+        /// <param name="nazev">Název knihy</param>
+        /// <param name="datumVydani">Datum vydání knihy</param>
+        /// <param name="autorId">ID autora knihy</param>
         public void AddKniha(string nazev, DateTime datumVydani, int autorId)
         {
             using (SqlConnection connection = Singleton.GetConnection())
@@ -60,6 +80,13 @@ namespace databse_app.DAO
             }
         }
 
+        /// <summary>
+        /// Přidá nového zákazníka do databáze
+        /// </summary>
+        /// <param name="jmeno">Jméno zákazníka</param>
+        /// <param name="prijmeni">Příjmení zákazníka</param>
+        /// <param name="telefon">Telefon zákazníka</param>
+        /// <param name="datumNarozeni">Datum narození zákazníka</param>
         public void AddZakaznik(string jmeno, string prijmeni, string telefon, DateTime datumNarozeni)
         {
             using (SqlConnection connection = Singleton.GetConnection())
@@ -75,6 +102,12 @@ namespace databse_app.DAO
                 cmd.ExecuteNonQuery();
             }
         }
+
+        /// <summary>
+        /// Přidá nový produkt do databáze
+        /// </summary>
+        /// <param name="kod">Kód produktu</param>
+        /// <param name="idKniha">ID knihy</param>
         public void AddProdukt(int kod, int? idKniha)
         {
             using (SqlConnection connection = Singleton.GetConnection())
@@ -97,6 +130,14 @@ namespace databse_app.DAO
             }
         }
 
+        /// <summary>
+        /// Přidá novou výpujčku do databáze
+        /// </summary>
+        /// <param name="datumVypujceni">Datum vypůjčení</param>
+        /// <param name="datumVraceni">Datum vrácení (může být null)</param>
+        /// <param name="vraceno">True nebo False. Určuje zda produkt byl vrácen nebo ne.</param>
+        /// <param name="idProdukt">ID produktu</param>
+        /// <param name="idZakaznik">ID zákazníka</param>
         public void AddVypujcka(DateTime datumVypujceni, DateTime? datumVraceni, bool vraceno, int idProdukt, int idZakaznik)
         {
             using (SqlConnection connection = Singleton.GetConnection())

@@ -16,6 +16,9 @@ namespace databse_app.MenuClasses
             _selectDAO = new selectDAO();
         }
 
+        /// <summary>
+        /// zobrazí menu pro zobrazení dat z databáze
+        /// </summary>
         public void ShowSelectMenu() 
         {
             Console.WriteLine("\n--- Select MENU ---");

@@ -30,6 +30,9 @@ namespace databse_app.MenuClasses
             _updateDAO = new updateDAO();
         }
 
+        /// <summary>
+        /// zobrazí menu pro aktualizaci záznamů v databázi
+        /// </summary>
         public void ShowUpdateMenu()
         {
             while (true)
@@ -68,7 +71,13 @@ namespace databse_app.MenuClasses
         }
 
         
-
+        /// <summary>
+        /// Umožňuje aktualizaci záznamu v databázi.
+        /// </summary>
+        /// <param name="tableName">Název tabulky</param>
+        /// <param name="idColumn">Sloupec s ID záznamu</param>
+        /// <param name="columns">Pole názvů sloupců, které můžeme aktualizovat</param>
+        /// <param name="searchColumn">sloupec pro vyhledání záznamu</param>
         private void UpdateEntity(string tableName, string idColumn, string[] columns, string searchColumn = null)
         {
             string searchColumnDisplay = searchColumn != null && ColumnNames.ContainsKey(searchColumn) ? ColumnNames[searchColumn] : searchColumn ?? idColumn;

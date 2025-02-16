@@ -16,6 +16,9 @@ namespace databse_app.MenuClasses
             _insertDAO = new insertDAO();
         }
 
+        /// <summary>
+        /// zobrazí menu pro vložení dat do databáze
+        /// </summary>
         public void ShowInsertMenu()
         {
             while (true)

@@ -25,6 +25,9 @@ namespace databse_app.MenuClasses
             _importMenu = new importMenu();
         }
 
+        /// <summary>
+        /// Hlavní menu aplikace
+        /// </summary>
         public void Start()
         {
             while (true)

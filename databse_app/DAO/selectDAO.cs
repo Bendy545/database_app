@@ -17,6 +17,9 @@ namespace databse_app.DAO
 
         }
 
+        /// <summary>
+        /// Vypíše seznam autorů z databáze
+        /// </summary>
         public void GetAutori()
         {
             using (SqlConnection connection = Singleton.GetConnection())
@@ -37,6 +40,9 @@ namespace databse_app.DAO
             }
         }
 
+        /// <summary>
+        /// Vypíše seznam knih z databáze
+        /// </summary>
         public void GetKnihy()
         {
             using (SqlConnection connection = Singleton.GetConnection())
@@ -57,6 +63,9 @@ namespace databse_app.DAO
             }
         }
 
+        /// <summary>
+        /// Vypíše seznam produktů z databáze
+        /// </summary>
         public void GetProdukty()
         {
             using (SqlConnection connection = Singleton.GetConnection())
@@ -77,6 +86,9 @@ namespace databse_app.DAO
             }
         }
 
+        /// <summary>
+        /// Vypíše seznam zákazníků z databáze
+        /// </summary>
         public void GetZakaznici()
         {
             using (SqlConnection connection = Singleton.GetConnection())
@@ -97,6 +109,9 @@ namespace databse_app.DAO
             }
         }
 
+        /// <summary>
+        /// Vypíše seznam výpujček z databáze
+        /// </summary>
         public void GetVypujcky()
         {
             using (SqlConnection connection = Singleton.GetConnection())
