@@ -19,31 +19,32 @@ namespace databse_app.DAO
         }
 
         /// <summary>
-        /// Získá ID záznamu
+        /// Získá ID záznamu 
         /// </summary>
         /// <param name="tableName">Název tabulky</param>
-        /// <param name="searchColumn">Název sloupce</param>
-        /// <param name="searchValue">Hledaná hodnota</param>
-        /// <param name="idColumn">Název sloupce s ID</param>
-        /// <returns>ID záznamu</returns>
-        public int? GetIdByColumnValue(string tableName, string searchColumn, string searchValue, string idColumn)
+        /// <param name="searchColumn1">První sloupec pro hledání</param>
+        /// <param name="searchValue1">Hodnota prvního sloupce</param>
+        /// <param name="searchColumn2">Druhý sloupec pro hledání</param>
+        /// <param name="searchValue2">Hodnota druhého sloupce</param>
+        /// <param name="idColumn">Název ID sloupce</param>
+        /// <returns>ID záznamu nebo null</returns>
+        public int? GetIdByColumnValue(string tableName, string searchColumn1, string searchValue1, string idColumn, string searchColumn2 = null, string searchValue2 = null)
         {
             using (SqlConnection connection = Singleton.GetConnection())
             {
-                string query;
-
-                if (int.TryParse(searchValue, out _))
+                string query = $"SELECT {idColumn} FROM {tableName} WHERE {searchColumn1} = @SearchValue1";
+                if (!string.IsNullOrEmpty(searchColumn2))
                 {
-                    query = $"SELECT {idColumn} FROM {tableName} WHERE {searchColumn} = @SearchValue";
-                }
-                else
-                {
-                    query = $"SELECT {idColumn} FROM {tableName} WHERE {searchColumn} COLLATE Latin1_General_CI_AI = @SearchValue";
+                    query += $" AND {searchColumn2} = @SearchValue2";
                 }
 
                 using (SqlCommand cmd = new SqlCommand(query, connection))
                 {
-                    cmd.Parameters.AddWithValue("@SearchValue", searchValue);
+                    cmd.Parameters.AddWithValue("@SearchValue1", searchValue1);
+                    if (!string.IsNullOrEmpty(searchColumn2))
+                    {
+                        cmd.Parameters.AddWithValue("@SearchValue2", searchValue2);
+                    }
                     connection.Open();
                     object result = cmd.ExecuteScalar();
                     return result != null ? (int?)result : null;

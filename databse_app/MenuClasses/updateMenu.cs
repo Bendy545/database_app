@@ -22,7 +22,7 @@ namespace databse_app.MenuClasses
     { "prijm_za", "Příjmení zákazníka" },
     { "tel", "Telefon" },
     { "kod_p", "Kód produktu" }
-    
+
 };
 
         public updateMenu()
@@ -70,7 +70,7 @@ namespace databse_app.MenuClasses
             }
         }
 
-        
+
         /// <summary>
         /// Umožňuje aktualizaci záznamu v databázi.
         /// </summary>
@@ -81,14 +81,32 @@ namespace databse_app.MenuClasses
         private void UpdateEntity(string tableName, string idColumn, string[] columns, string searchColumn = null)
         {
             string searchColumnDisplay = searchColumn != null && ColumnNames.ContainsKey(searchColumn) ? ColumnNames[searchColumn] : searchColumn ?? idColumn;
+            string searchValue, searchValue2 = null;
 
-            Console.WriteLine($"Zadejte hodnotu pro {searchColumnDisplay}");
-            string searchValue = Console.ReadLine();
+            if (tableName == "zakaznik" || tableName == "autori")
+            {
+                Console.Write("Zadejte jméno: ");
+                searchValue = Console.ReadLine();
+                Console.Write("Zadejte příjmení: ");
+                searchValue2 = Console.ReadLine();
+            }
+            else
+            {
+                Console.WriteLine($"Zadejte {searchColumnDisplay}");
+                searchValue = Console.ReadLine();
+            }
 
             int? id = null;
             if (searchColumn != null)
             {
-                id = _updateDAO.GetIdByColumnValue(tableName, searchColumn, searchValue, idColumn);
+                if (searchValue2 != null)
+                {
+                    id = _updateDAO.GetIdByColumnValue(tableName, "jm_" + tableName.Substring(0, 2), searchValue, idColumn, "prijm_" + tableName.Substring(0, 2), searchValue2);
+                }
+                else
+                {
+                    id = _updateDAO.GetIdByColumnValue(tableName, searchColumn, searchValue, idColumn);
+                }
             }
             else if (int.TryParse(searchValue, out int parsedId))
             {
@@ -127,6 +145,5 @@ namespace databse_app.MenuClasses
             _updateDAO.UpdateRecord(tableName, columnToUpdate, valueToUpdate, idColumn, id.Value);
             Console.WriteLine($"{columnToUpdate} bylo úspěšně aktualizováno.");
         }
-
     }
 }

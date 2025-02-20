@@ -63,6 +63,7 @@ namespace databse_app.DAO
                 {
                     cmd.Parameters.AddWithValue("@id", id);
                     connection.Open();
+                    
                     cmd.ExecuteNonQuery();
                     Console.WriteLine($"{objectName} úspěšně smazán.");
                 }

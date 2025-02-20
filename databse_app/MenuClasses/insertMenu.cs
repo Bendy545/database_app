@@ -87,18 +87,20 @@ namespace databse_app.MenuClasses
                 Console.WriteLine("Neplatný formát data.");
                 return;
             }
-            Console.Write("ID autora: ");
-            int id;
-            while (true)
+            Console.Write("Jméno autora: ");
+            string jmenoAutora = Console.ReadLine();
+
+            Console.Write("Příjmení autora: ");
+            string prijmeniAutora = Console.ReadLine();
+            try
             {
-                if (int.TryParse(Console.ReadLine(), out id) && _insertDAO.RecordExists("autori", "id_au", id))
-                {
-                    break;
-                }
-                Console.WriteLine("Neplatné ID autora. Zkuste to znova");
+                _insertDAO.AddKniha(nazev, datumVydani, jmenoAutora, prijmeniAutora);
+                Console.WriteLine("Kniha přidána.");
             }
-            _insertDAO.AddKniha(nazev, datumVydani, id);
-            Console.WriteLine("Kniha přidána.");
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Chyba při přidávání knihy: {ex.Message}");
+            }
         }
 
         /// <summary>
@@ -133,20 +135,16 @@ namespace databse_app.MenuClasses
                 Console.WriteLine("Neplatný kód produktu.");
                 return;
             }
-            int idKniha;
-            while (true)
-            {
-                Console.Write("ID knihy: ");
-                string idKnihaInput = Console.ReadLine();
+            Console.Write("Název knihy: ");
+            string nazevKnihy = Console.ReadLine();
 
-                if (int.TryParse(idKnihaInput, out idKniha) && _insertDAO.RecordExists("knihy", "id_kn", idKniha))
-                {
-                    break;
-                }
-                Console.WriteLine("Neplatné ID knihy. Zadejte znovu.");
+            Console.Write("Datum vydání knihy (YYYY-MM-DD): ");
+            if (!DateTime.TryParse(Console.ReadLine(), out DateTime datumVydani))
+            {
+                Console.WriteLine("Neplatný formát data.");
+                return;
             }
-            _insertDAO.AddProdukt(kod, idKniha);
-            Console.WriteLine("Produkt přidán.");
+            _insertDAO.AddProdukt(kod, nazevKnihy, datumVydani);
         }
 
         /// <summary>
@@ -160,34 +158,31 @@ namespace databse_app.MenuClasses
                 Console.WriteLine("Neplatný formát data.");
                 return;
             }
+
             Console.Write("Datum vrácení (YYYY-MM-DD, Enter pro neznámé): ");
             string datVraceniInput = Console.ReadLine();
             DateTime? datumVraceni = string.IsNullOrEmpty(datVraceniInput) ? null : DateTime.Parse(datVraceniInput);
+
             Console.Write("Vráceno? (1 = Ano, 0 = Ne): ");
             bool vraceno = Console.ReadLine() == "1";
-            int idProdukt;
-            while (true)
+
+            Console.Write("Kód produktu: ");
+            if (!int.TryParse(Console.ReadLine(), out int kodProdukt))
             {
-                Console.Write("ID produktu: ");
-                if (int.TryParse(Console.ReadLine(), out idProdukt) && _insertDAO.RecordExists("produkt", "id_p", idProdukt))
-                {
-                    break;
-                }
-                Console.WriteLine("Neplatné ID produktu. Zkuste to znovu.");
+                Console.WriteLine("Neplatný kód produktu.");
+                return;
             }
 
-            int idZakaznik;
-            while (true)
-            {
-                Console.Write("ID zákazníka: ");
-                if (int.TryParse(Console.ReadLine(), out idZakaznik) && _insertDAO.RecordExists("zakaznik", "id_za", idZakaznik))
-                {
-                    break;
-                }
-                Console.WriteLine("Neplatné ID zákazníka. Zkuste to znovu.");
-            }
-            _insertDAO.AddVypujcka(datumVypujceni, datumVraceni, vraceno, idProdukt, idZakaznik);
-            Console.WriteLine("Výpůjčka přidána.");
+            Console.Write("Jméno zákazníka: ");
+            string jmenoZakaznika = Console.ReadLine();
+
+            Console.Write("Příjmení zákazníka: ");
+            string prijmeniZakaznika = Console.ReadLine();
+
+            Console.Write("Telefon zákazníka: ");
+            string telefonZakaznika = Console.ReadLine();
+
+            _insertDAO.AddVypujcka(datumVypujceni, datumVraceni, vraceno, kodProdukt, jmenoZakaznika, prijmeniZakaznika, telefonZakaznika);
         }
     }
 }
