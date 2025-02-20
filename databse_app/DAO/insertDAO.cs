@@ -52,7 +52,6 @@ namespace databse_app.DAO
             {
                 connection.Open();
 
-                // Hledání ID autora podle jména a příjmení
                 string findAuthorQuery = "SELECT id_au FROM autori WHERE jm_au = @Jmeno AND prijm_au = @Prijmeni";
                 SqlCommand findAuthorCmd = new SqlCommand(findAuthorQuery, connection);
                 findAuthorCmd.Parameters.AddWithValue("@Jmeno", jmenoAutora);
@@ -67,7 +66,6 @@ namespace databse_app.DAO
 
                 int autorId = Convert.ToInt32(result);
 
-                // Přidání knihy s nalezeným ID autora
                 string insertBookQuery = "INSERT INTO knihy (nazev_kn, dat_vyd, id_au) VALUES (@Nazev, @DatumVydani, @AutorId)";
                 SqlCommand insertBookCmd = new SqlCommand(insertBookQuery, connection);
                 insertBookCmd.Parameters.AddWithValue("@Nazev", nazev);
